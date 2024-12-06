@@ -27,13 +27,13 @@ fn eval_report(report: &Vec<isize>) -> ReportState {
         }
         // At this stage we know they're increasing or decreasing, at least by one, so just check
         // if outside the upper bound
-        if diff > 3 || diff < -3 {
+        if !(-3..=3).contains(&diff) {
             debug_println!("Unsafe");
             return ReportState::Unsafe;
         }
     }
     debug_println!("Safe");
-    return ReportState::Safe;
+    ReportState::Safe
 }
 
 fn variant_eval(report: &Vec<isize>) -> ReportState {
@@ -45,14 +45,14 @@ fn variant_eval(report: &Vec<isize>) -> ReportState {
             ReportState::Unsafe => (),
         }
     }
-    return ReportState::Unsafe;
+    ReportState::Unsafe
 }
 
 fn part_one(reports: &Vec<Vec<isize>>) {
     let start = std::time::Instant::now();
     let mut safe = 0;
     for report in reports {
-        match eval_report(&report) {
+        match eval_report(report) {
             ReportState::Safe => safe += 1,
             ReportState::Unsafe => (),
         };
@@ -65,9 +65,9 @@ fn part_two(reports: &Vec<Vec<isize>>) {
     let start = std::time::Instant::now();
     let mut safe = 0;
     for report in reports {
-        match eval_report(&report) {
+        match eval_report(report) {
             ReportState::Safe => safe += 1,
-            ReportState::Unsafe => match variant_eval(&report) {
+            ReportState::Unsafe => match variant_eval(report) {
                 ReportState::Safe => safe += 1,
                 ReportState::Unsafe => (),
             },

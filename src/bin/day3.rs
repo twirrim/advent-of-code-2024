@@ -30,9 +30,9 @@ fn part_two(data: &Vec<String>) {
                 if enabled {
                     sum += x.as_str().parse::<i32>().unwrap() * y.as_str().parse::<i32>().unwrap();
                 };
-            } else if let Some(_) = caps.name("Do") {
+            } else if caps.name("Do").is_some() {
                 enabled = true;
-            } else if let Some(_) = caps.name("Dont") {
+            } else if caps.name("Dont").is_some() {
                 enabled = false;
             }
         }
