@@ -1,6 +1,6 @@
 use advent_of_code_2024::read_file;
 
-fn part_one(input: &Vec<Vec<char>>) {
+fn part_one(input: &[Vec<char>]) {
     let start = std::time::Instant::now();
     let mut count: u32 = 0;
     // x is rows, y is columns
@@ -76,7 +76,7 @@ fn part_one(input: &Vec<Vec<char>>) {
     println!("Part one time taken: {:?}", start.elapsed());
 }
 
-fn part_two(input: &Vec<Vec<char>>) {
+fn part_two(input: &[Vec<char>]) {
     let start = std::time::Instant::now();
     let mut count: u32 = 0;
     // x is rows, y is columns
