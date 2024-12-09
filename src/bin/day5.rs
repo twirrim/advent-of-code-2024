@@ -1,6 +1,5 @@
-use std::ops::Index;
 
-use advent_of_code_2024::{debug_println, read_file, Timer};
+use advent_of_code_2024::{read_file, Timer};
 
 // These structs are probably overkill?
 #[derive(Debug)]
