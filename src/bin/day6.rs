@@ -63,7 +63,7 @@ impl Guard {
                 if self.x != 0 && self.map[self.x - 1][self.y] == '#' {
                     self.facing = Direction::Right;
                 } else {
-                    self.x = self.x - 1;
+                    self.x -= 1;
                     self.visited.insert((self.x, self.y));
                     if self.x == 0 {
                         self.off_the_map = true;
@@ -74,7 +74,7 @@ impl Guard {
                 if self.x != self.map.len() - 1 && self.map[self.x + 1][self.y] == '#' {
                     self.facing = Direction::Left;
                 } else {
-                    self.x = self.x + 1;
+                    self.x += 1;
                     self.visited.insert((self.x, self.y));
                     if self.x == self.map.len() - 1 {
                         self.off_the_map = true;
@@ -85,7 +85,7 @@ impl Guard {
                 if self.y != 0 && self.map[self.x][self.y - 1] == '#' {
                     self.facing = Direction::Up;
                 } else {
-                    self.y = self.y - 1;
+                    self.y -= 1;
                     self.visited.insert((self.x, self.y));
                     if self.y == 0 {
                         self.off_the_map = true;
@@ -96,7 +96,7 @@ impl Guard {
                 if self.y != self.map[self.x].len() - 1 && self.map[self.x][self.y + 1] == '#' {
                     self.facing = Direction::Down;
                 } else {
-                    self.y = self.y + 1;
+                    self.y += 1;
                     self.visited.insert((self.x, self.y));
                     if self.y == self.map[self.x].len() - 1 {
                         self.off_the_map = true;
@@ -107,13 +107,13 @@ impl Guard {
     }
 }
 
-fn part_one(input: &Vec<Vec<char>>) {
+fn part_one(input: &[Vec<char>]) {
     let timer = Timer::start("Part One".to_owned());
-    let mut guard = Guard::new(input.clone());
+    let mut guard = Guard::new(input.to_owned());
     for row in &guard.map {
         debug_println!("{:?}", row);
     }
-    while guard.off_the_map == false {
+    while !guard.off_the_map {
         debug_println!("Before: {}, {}, {:?}", guard.x, guard.y, guard.facing);
         guard.step();
     }
